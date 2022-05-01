@@ -37,14 +37,14 @@ const resolvers = {
       return { token, user };
     },
 
-    saveBook: async (parent, { authors, description, title, bookId, image, link }, context) => {
+    saveBook: async (parent, { bookToSave }, context) => {
       const newBook = await Book.create({
-        authors: authors,
-        description: description,
-        title: title,
-        bookId: bookId,
-        image: image,
-        link: link,
+        authors: bookToSave.authors,
+        description: bookToSave.description,
+        title: bookToSave.title,
+        bookId: bookToSave.bookId,
+        image: bookToSave.image,
+        link: bookToSave.link,
       });
       if (context.user) {
         return User.findOneAndUpdate(
