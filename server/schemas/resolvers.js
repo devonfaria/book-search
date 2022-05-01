@@ -25,13 +25,13 @@ const resolvers = {
 
       if (!user) {
         throw new AuthenticationError('No user with this email found!');
-      }
+      };
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
         throw new AuthenticationError('Incorrect password!');
-      }
+      };
 
       const token = signToken(user);
       return { token, user };
@@ -57,7 +57,7 @@ const resolvers = {
             runValidators: true,
           }
         );
-      }
+      };
       throw new AuthenticationError('You need to be logged in!');
     },
 
@@ -68,10 +68,10 @@ const resolvers = {
           { $pull: { savedBooks: bookId } },
           { new: true }
         );
-      }
+      };
       throw new AuthenticationError('You need to be logged in!');
     },
   }
 };
 
-export default resolvers;
+module.exports = resolvers;
